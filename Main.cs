@@ -15,8 +15,8 @@ using Request;
 namespace DesktopAssistant {
     class DesktopAssistant {
         async static Task Main(string[] args) {
-            string a = await Request.Request.text_to_speech();
-            Console.WriteLine(a);
+            await Request.Request.text_to_speech(content: "lets go to bowling");
+            
         }
     }
 }

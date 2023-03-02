@@ -7,6 +7,7 @@
 .vscode/
 set_credentials.bat
 IBM_apikey.json
+*.wav
 
 # User-specific files
 *.rsuser
