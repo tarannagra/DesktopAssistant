@@ -4,5 +4,9 @@
 run:
 	dotnet run
 
+runc:
+	clear
+	dotnet run
+
 build:
 	dotnet build

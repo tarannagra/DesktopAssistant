@@ -15,6 +15,7 @@ namespace Request {
     }
 
     class Request {
+        // TOML is easier than JSON for C#
         private static string ibm_key() {
             using (StreamReader reader = File.OpenText("conf.toml")) {
                 TomlTable tomlTable = TOML.Parse(reader);
@@ -22,6 +23,7 @@ namespace Request {
             }
         }
         private static string ibm_apikey = ibm_key();
+        // a() -> a test function to see if a successful request is made.
         public async static Task<string> a() {
             var client = new HttpClient();
             var request = new HttpRequestMessage() {
@@ -54,12 +56,9 @@ namespace Request {
             return response;
         }
 
-        public static void test() {
-            Console.WriteLine(ibm_apikey);
-
-        }
-
         private async static Task make_file(string? filename, byte[]? contents) {
+            #pragma warning disable CS8604
+            // potential nullable value and want to remove that 
             await File.WriteAllBytesAsync(filename, contents);
         }
 

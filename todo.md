@@ -1,6 +1,6 @@
 # Checklist
 
-- [ ] Make a welcome screen.
+- [x] Add text to speech
 - [ ] Add speech to text
-- [ ] Add text to speech
+- [ ] Make a welcome screen.
 - [ ] 
