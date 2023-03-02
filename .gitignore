@@ -8,6 +8,7 @@
 set_credentials.bat
 IBM_apikey.json
 *.wav
+conf.toml
 
 # User-specific files
 *.rsuser

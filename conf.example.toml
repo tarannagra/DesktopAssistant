@@ -1,0 +1,4 @@
+title = "Desktop Assistant Configuration"
+
+[ibm]
+api_key = "https://cloud.ibm.com/iam/apikeys"

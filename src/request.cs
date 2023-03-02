@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Text.Json.Serialization;
 
+using Tommy;
+
 namespace Request {
 
     public class Format {
@@ -13,7 +15,13 @@ namespace Request {
     }
 
     class Request {
-        private static string ibm_apikey = "ueTqlcYQ4DXz6H1WaXkk1Z7Os6ge8XDt3y8b2iiOsAZ0";
+        private static string ibm_key() {
+            using (StreamReader reader = File.OpenText("conf.toml")) {
+                TomlTable tomlTable = TOML.Parse(reader);
+                return tomlTable["ibm"]["api_key"];
+            }
+        }
+        private static string ibm_apikey = ibm_key();
         public async static Task<string> a() {
             var client = new HttpClient();
             var request = new HttpRequestMessage() {
@@ -47,11 +55,7 @@ namespace Request {
         }
 
         public static void test() {
-            string content = "aaaaaa";
-            var Format = new Format {
-                text = content
-            };
-            Console.WriteLine(JsonSerializer.Serialize(Format));
+            Console.WriteLine(ibm_apikey);
 
         }
 
