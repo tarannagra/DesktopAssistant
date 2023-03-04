@@ -1,3 +1,12 @@
+<!-- 
+  DesktopAssistant.csproj - Not made by Taran Nagra.
+  
+  This file was made by running the `dotnet new` command.
+  It auto updates when you add nuget packages.
+  IMO, dotnet via CLI > Visual Studio
+
+-->
+
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
