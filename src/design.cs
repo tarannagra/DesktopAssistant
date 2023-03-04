@@ -1,3 +1,10 @@
+/* 
+    design.cs - Made by Taran Nagra
+    ---
+    This is the file to make the designing
+    in the program. It's quite cool :).
+*/
+
 using System;
 using System.Text;
 
