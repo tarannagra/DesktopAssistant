@@ -3,19 +3,22 @@
     This project is protected by the MIT Licence
 */
 
+// Is it just me, or do you like having the `using` statements in ascending order?
+
 // Everyone got these
 using System;
 using System.Threading.Tasks;
 
 // My own libraries
+using IBM;
 using Design;
-using Request;
 
 namespace DesktopAssistant {
     class DesktopAssistant {
         async static Task Main(string[] args) {
             Design.Design.welcome_screen();
-            // await Request.Request.text_to_speech(content: "");
+            await IBM.IBM.text_to_speech(content: "Testing from IBM once again.");
+            // await Request.Request.text_to_speech(content: "This is an awesome tool made by the awesome person!");
             
         }
     }
