@@ -8,6 +8,7 @@
 set_credentials.bat
 *.wav
 conf.toml
+*.flac
 
 # User-specific files
 *.rsuser
