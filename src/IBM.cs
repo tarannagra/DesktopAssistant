@@ -33,7 +33,14 @@ namespace IBM {
                 return tomlTable["ibm"]["api_key"];
             }
         }
+        private static string ibm_base_url() {
+            using (StreamReader reader = File.OpenText("conf.toml")) {
+                TomlTable tomlTable = TOML.Parse(reader);
+                return tomlTable["ibm"]["base_url"];
+            }
+        }
         private static string ibm_apikey = ibm_key();
+        private static string base_url = ibm_base_url();
         private static string voice = "en-US_MichaelV3Voice"; // change voice here if needed instead of changing in the URL 
         // a() -> a test function to see if a successful request is made.
         public async static Task<string> a() {
@@ -54,7 +61,7 @@ namespace IBM {
             };
             var client = new HttpClient();
             var request = new HttpRequestMessage() {
-                RequestUri = new Uri(uriString: $"https://api.eu-gb.text-to-speech.watson.cloud.ibm.com/instances/cd85e365-9c22-40f7-ab9f-ca89f47a6491/v1/synthesize?voice={voice}"),
+                RequestUri = new Uri(uriString: $"{base_url}/v1/synthesize?voice={voice}"),
                 Method = HttpMethod.Post
             };
             request.Headers.Add(name: "Accept", value: "audio/wav");
@@ -68,7 +75,23 @@ namespace IBM {
             return response; // optional response if you would like it
         }
 
-        private async static Task make_file(string? filename, byte[]? contents) {
+        public async static Task<string> speech_to_text() {
+            var client = new HttpClient();
+            var request = new HttpRequestMessage() {
+                RequestUri = new Uri(uriString: $"{base_url}/v1/recognize"),
+                Method = HttpMethod.Post
+            };
+            request.Headers.Add(name: "Authorization", "Basic " + Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"apikey:{ibm_apikey}")));
+            request.Content = new StringContent(File.ReadAllText("recording.flac").Replace("\n", string.Empty).Replace("\r", string.Empty));
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("audio/flac");
+
+            HttpResponseMessage response = await client.SendAsync(request: request);
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+            return responseBody;
+        }
+
+        private async static Task make_file(string filename, byte[] contents) {
             #pragma warning disable CS8604
             // potential nullable value and want to remove that 
             await File.WriteAllBytesAsync(filename, contents);
