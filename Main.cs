@@ -10,16 +10,16 @@ using System;
 using System.Threading.Tasks;
 
 // My own libraries
-using IBM;
-using Design;
+using static IBM;
+using static Design;
 
 namespace DesktopAssistant {
     class DesktopAssistant {
         async static Task Main(string[] args) {
-            Design.Design.welcome_screen();
-            await IBM.IBM.text_to_speech(content: "Testing from IBM once again.");
-            // await Request.Request.text_to_speech(content: "This is an awesome tool made by the awesome person!");
-            
+            welcome_screen();
+            await text_to_speech(content: "I hate how Americans say my name");
+            // string response = await speech_to_text();
+            // Console.WriteLine(response);
         }
     }
 }
