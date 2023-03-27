@@ -5,7 +5,6 @@
 
 # My own files
 .vscode/
-set_credentials.bat
 *.wav
 conf.toml
 *.flac
