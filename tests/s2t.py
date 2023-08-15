@@ -6,7 +6,7 @@ headers = {
 
 data = toml.load('../conf.toml')
 
-url = data['stt']['base_url']
+url = f"{data['stt']['base_url']}/v1/recognize" # didnt work bc im stupid and didn't add this shit lmao
 api_key = data['stt']['api_key']
 with open('../audio.flac', 'rb') as f:
     data = f.read()
